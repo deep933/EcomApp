@@ -35,6 +35,7 @@
                 android:layout_width="50dp"
                 android:layout_marginLeft="-50dp"
                 android:layout_height="30dp"
+                android:id="@+id/cart"
                 android:src="@drawable/baseline_shopping_cart_black_18dp"
                 android:tint="#FFF">
             </ImageView>
