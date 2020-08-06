@@ -25,7 +25,7 @@ public class Book {
         this.book_title = book_title;
     }
 
-    public float getBook_price() {
+    public double getBook_price() {
         return book_price;
     }
 
@@ -41,7 +41,7 @@ public class Book {
         this.book_author = book_author;
     }
 
-    public Book(String book_id, String book_url, String book_title, float book_price, String book_author) {
+    public Book(String book_id, String book_url, String book_title, double book_price, String book_author) {
         this.book_id = book_id;
         this.book_url = book_url;
         this.book_title = book_title;
@@ -52,6 +52,6 @@ public class Book {
     private String book_id;
     private String book_url;
     private String book_title;
-    private float book_price;
+    private double book_price;
     private String book_author;
 }

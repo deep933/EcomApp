@@ -25,12 +25,12 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:text="EcomApp"
+                android:text="BookKart"
                 android:gravity="center"
                 android:textColor="#FFF"
                 android:textSize="18dp"
                 android:layout_marginRight="50dp"
-                android:textStyle="bold"></TextView>
+                android:textStyle="normal"></TextView>
             <ImageView
                 android:layout_width="50dp"
                 android:layout_marginLeft="-50dp"
@@ -71,6 +71,8 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="vertical">
+
+
             <GridView
                 android:id="@+id/gridview"
                 android:layout_width="match_parent"
