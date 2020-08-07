@@ -1,6 +1,8 @@
 package com.example.ecomapp;
 
-public class Book {
+import java.io.Serializable;
+
+public class Book implements Serializable {
     public String getBook_id() {
         return book_id;
     }

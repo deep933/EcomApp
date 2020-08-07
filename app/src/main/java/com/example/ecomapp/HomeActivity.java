@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.GridView;
 import android.widget.ImageView;
 
@@ -42,8 +43,17 @@ public class HomeActivity extends AppCompatActivity {
             }
         });
         GridView gridView = (GridView)findViewById(R.id.gridview);
-        BooksAdapter booksAdapter = new BooksAdapter(this, books);
+        final BooksAdapter booksAdapter = new BooksAdapter(this, books);
         gridView.setAdapter(booksAdapter);
+
+        gridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Intent in = new Intent(HomeActivity.this,ProductInfo.class);
+                in.putExtra("book",books.get(position));
+                startActivity(in);
+            }
+        });
 
     }
 }
