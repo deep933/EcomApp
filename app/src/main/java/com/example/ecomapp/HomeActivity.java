@@ -28,8 +28,11 @@ public class HomeActivity extends AppCompatActivity {
 
         //added retrofit client
         Retrofit retrofit = new Retrofit.Builder()
+                .baseUrl(Api.BASE_URL)
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
+
+        Api api = retrofit.create(Api.class);
 
             /*books.add(new Book("3415","https://m.media-amazon.com/images/I/51Ys5yejqML.jpg","Saint X: A Novel",13.56,"Alexis Schaitkin"));
         books.add(new Book("3415","https://m.media-amazon.com/images/I/61mlrLANctL.jpg","Things in Jars: A Novel",12.34,"Jess Kidd"));
