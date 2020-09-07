@@ -1,5 +1,7 @@
 package com.example.ecomapp;
 
+import com.google.gson.annotations.SerializedName;
+
 import java.io.Serializable;
 
 public class Book implements Serializable {
@@ -51,9 +53,18 @@ public class Book implements Serializable {
         this.book_author = book_author;
     }
 
+    @SerializedName("book_id")
     private String book_id;
+
+    @SerializedName("book_url")
     private String book_url;
+
+    @SerializedName("book_title")
     private String book_title;
+
+    @SerializedName("book_price")
     private double book_price;
+
+    @SerializedName("book_author")
     private String book_author;
 }
