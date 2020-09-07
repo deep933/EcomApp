@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -15,6 +16,9 @@ public class ProductInfo extends AppCompatActivity {
     private ImageView product_img;
     private TextView product_title;
     private TextView product_price;
+    private TextView author_name;
+    private Button add_cart;
+
 
     private ImageView backbtn;
 
@@ -26,6 +30,8 @@ public class ProductInfo extends AppCompatActivity {
         product_img = findViewById(R.id.product_img);
         product_title = findViewById(R.id.product_title);
         product_price = findViewById(R.id.product_price);
+        author_name = findViewById(R.id.author_name);
+        add_cart = findViewById(R.id.add_cart);
 
         backbtn = findViewById(R.id.backbtn);
 
