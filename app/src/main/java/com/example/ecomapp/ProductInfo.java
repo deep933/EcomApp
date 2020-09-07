@@ -33,6 +33,15 @@ public class ProductInfo extends AppCompatActivity {
         author_name = findViewById(R.id.author_name);
         add_cart = findViewById(R.id.add_cart);
 
+        add_cart.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+            }
+        });
+
+
+
         backbtn = findViewById(R.id.backbtn);
 
         backbtn.setOnClickListener(new View.OnClickListener() {
@@ -49,6 +58,7 @@ public class ProductInfo extends AppCompatActivity {
             Glide.with(ProductInfo.this).load(book.getBook_url()).into(product_img);
             product_title.setText(book.getBook_title());
             product_price.setText(String.valueOf("$"+book.getBook_price()));        }
+        author_name.setText(book.getBook_author());
 
     }
 }
