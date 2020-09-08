@@ -7,6 +7,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.Filter;
+import android.widget.Filterable;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -14,7 +16,7 @@ import com.bumptech.glide.Glide;
 
 import java.util.List;
 
-public class BooksAdapter extends BaseAdapter {
+public class BooksAdapter extends BaseAdapter implements Filterable {
 
     List<Book> books;
     Context mContext;
@@ -63,5 +65,10 @@ public class BooksAdapter extends BaseAdapter {
 
         return v;
 
+    }
+
+    @Override
+    public Filter getFilter() {
+        return null;
     }
 }
