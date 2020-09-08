@@ -4,9 +4,12 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.EditText;
 import android.widget.GridView;
 import android.widget.ImageView;
 import android.widget.Toast;
@@ -25,6 +28,8 @@ public class HomeActivity extends AppCompatActivity {
     private List<Book> books =new ArrayList<>();
     private ImageView cart;
     private GridView gridView;
+    private EditText search_input;
+
 
 
     @Override
@@ -33,6 +38,9 @@ public class HomeActivity extends AppCompatActivity {
         setContentView(R.layout.activity_home);
 
         gridView = (GridView)findViewById(R.id.gridview);
+        search_input = findViewById(R.id.search_input);
+
+
 
 
         //added retrofit client
@@ -70,6 +78,23 @@ public class HomeActivity extends AppCompatActivity {
                         Intent in = new Intent(HomeActivity.this,ProductInfo.class);
                         in.putExtra("book",bookList.get(position));
                         startActivity(in);
+                    }
+                });
+
+                search_input.addTextChangedListener(new TextWatcher() {
+                    @Override
+                    public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+                    }
+
+                    @Override
+                    public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+                    }
+
+                    @Override
+                    public void afterTextChanged(Editable s) {
+
                     }
                 });
 
