@@ -44,8 +44,10 @@
                     android:textSize="16dp"/>
             </LinearLayout>
             <ImageView
-                android:layout_width="20dp"
-                android:layout_height="20dp"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:padding="10dp"
+                android:id="@+id/delete_item"
                 android:src="@drawable/baseline_delete_black_18dp"
                 android:layout_marginLeft="-40dp"
                 android:tint="#aaa"></ImageView>
