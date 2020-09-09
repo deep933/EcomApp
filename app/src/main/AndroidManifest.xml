@@ -11,7 +11,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".Profile"></activity>
+        <activity android:name=".GettingStarted"></activity>
+        <activity android:name=".Profile" />
         <activity android:name=".Cart" />
         <activity android:name=".ProductInfo" />
         <activity android:name=".Signup">
@@ -22,7 +23,7 @@
             </intent-filter>
         </activity>
         <activity android:name=".Login" />
-        <activity android:name=".HomeActivity"></activity>
+        <activity android:name=".HomeActivity" />
         <activity android:name=".MainActivity" />
     </application>
 
