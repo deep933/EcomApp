@@ -17,6 +17,9 @@ public interface Api {
     @GET("books")
     Call<List<Book>> getBooks();
 
+    @GET("get/books")
+    Call<List<Book>> getSomething(@Query("book_ids") ArrayList<String> ids);
+
     @POST("signup")
     Call<User> signupUser(@Body User user);
 
