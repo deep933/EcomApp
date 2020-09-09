@@ -3,6 +3,7 @@ package com.example.ecomapp;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -11,6 +12,8 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import com.google.gson.Gson;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -70,6 +73,7 @@ public class Signup extends AppCompatActivity {
                     public void onResponse(Call<User> call, Response<User> response) {
 
                         User user = response.body();
+                        saveUser(user);
                         Toast.makeText(Signup.this,"Welcome "+user.getUser_name(),Toast.LENGTH_LONG).show();
                         Intent in = new Intent(Signup.this, HomeActivity.class);
                         startActivity(in);
@@ -86,5 +90,23 @@ public class Signup extends AppCompatActivity {
 
 
 
+    }
+
+
+    private void saveUser(User user){
+        SharedPreferences prefs =getSharedPreferences("userpref",MODE_PRIVATE);
+        SharedPreferences.Editor prefsEditor = prefs.edit();
+        Gson gson = new Gson();
+        String json = gson.toJson(user);
+        prefsEditor.putString("user", json);
+        prefsEditor.commit();
+    }
+
+    private User getUser(){
+        SharedPreferences prefs =getSharedPreferences("userpref",MODE_PRIVATE);
+        Gson gson = new Gson();
+        String json = prefs.getString("user", "");
+        User user = gson.fromJson(json, User.class);
+        return user;
     }
 }
