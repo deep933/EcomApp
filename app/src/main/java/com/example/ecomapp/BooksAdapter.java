@@ -14,26 +14,32 @@ import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class BooksAdapter extends BaseAdapter implements Filterable {
 
-    List<Book> books;
+    List<Book> originalbooks;
+    List<Book> filteredbooks;
     Context mContext;
+
+    private ItemFilter mFilter = new ItemFilter();
+
 
     @Override
     public int getCount() {
-        return books.size();
+        return filteredbooks.size();
     }
 
     public BooksAdapter(Context context,List<Book> books) {
         this.mContext = context;
-        this.books = books;
+        this.filteredbooks = books;
+        this.originalbooks = books;
     }
 
     @Override
-    public Object getItem(int position) {
-        return null;
+    public Book getItem(int position) {
+        return filteredbooks.get(position);
     }
 
     @Override
@@ -53,13 +59,13 @@ public class BooksAdapter extends BaseAdapter implements Filterable {
         }
 
 
-            ImageView product_img =  (ImageView) v.findViewById(R.id.product_img);
-            TextView product_title = (TextView) v.findViewById(R.id.product_title);
-            TextView product_price = (TextView) v.findViewById(R.id.product_price);
+        ImageView product_img =  (ImageView) v.findViewById(R.id.product_img);
+        TextView product_title = (TextView) v.findViewById(R.id.product_title);
+        TextView product_price = (TextView) v.findViewById(R.id.product_price);
 
-            Glide.with(mContext).load(books.get(position).getBook_url()).into(product_img);
-            product_title.setText(books.get(position).getBook_title());
-            product_price.setText(String.valueOf("$"+books.get(position).getBook_price()));
+        Glide.with(mContext).load(filteredbooks.get(position).getBook_url()).into(product_img);
+        product_title.setText(filteredbooks.get(position).getBook_title());
+        product_price.setText(String.valueOf("$"+filteredbooks.get(position).getBook_price()));
 
 
 
@@ -69,6 +75,46 @@ public class BooksAdapter extends BaseAdapter implements Filterable {
 
     @Override
     public Filter getFilter() {
-        return null;
+
+        return mFilter;
+    }
+
+
+    private class ItemFilter extends Filter {
+        @Override
+        protected FilterResults performFiltering(CharSequence constraint) {
+
+            String filterString = constraint.toString().toLowerCase();
+
+            FilterResults results = new FilterResults();
+
+            final List<Book> list = originalbooks;
+
+            int count = list.size();
+            final ArrayList<Book> nlist = new ArrayList<Book>(count);
+
+            Book filterableBook ;
+
+            for (int i = 0; i < count; i++) {
+                filterableBook = list.get(i);
+                if (filterableBook.getBook_title().toLowerCase().contains(filterString)) {
+                    nlist.add(filterableBook);
+                }
+            }
+
+            results.values = nlist;
+            results.count = nlist.size();
+
+            return results;
+        }
+
+        @SuppressWarnings("unchecked")
+        @Override
+        protected void publishResults(CharSequence constraint, FilterResults results) {
+            filteredbooks = (ArrayList<Book>) results.values;
+            notifyDataSetChanged();
+        }
+
     }
 }
+
