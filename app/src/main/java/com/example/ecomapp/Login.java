@@ -11,8 +11,15 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.gson.Gson;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+import retrofit2.Retrofit;
+import retrofit2.converter.gson.GsonConverterFactory;
 
 public class Login extends AppCompatActivity {
     private ImageView back;
@@ -45,6 +52,36 @@ public class Login extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
+                Retrofit retrofit = new Retrofit.Builder()
+                        .baseUrl(Api.BASE_URL)
+                        .addConverterFactory(GsonConverterFactory.create())
+                        .build();
+
+                Api api = retrofit.create(Api.class);
+                Call<User> call = api.signinUser(new LoginUser(email_input.getText().toString(),pass_input.getText().toString()));
+                call.enqueue(new Callback<User>() {
+                    @Override
+                    public void onResponse(Call<User> call, Response<User> response) {
+                        User user = response.body();
+                        if(user.getUser_id()!=null){
+                            saveUser(user);
+                            Intent in = new Intent(Login.this, HomeActivity.class);
+                            startActivity(in);
+                        }
+                        else{
+                            Toast.makeText(Login.this,"Wrong credential",Toast.LENGTH_LONG).show();
+                        }
+                    }
+
+                    @Override
+                    public void onFailure(Call<User> call, Throwable t) {
+
+                        Toast.makeText(Login.this,t.getMessage(),Toast.LENGTH_LONG).show();
+
+                    }
+                });
+
+
 
             }
         });
@@ -59,5 +96,13 @@ public class Login extends AppCompatActivity {
         });
     }
 
+    private void saveUser(User user){
+        SharedPreferences prefs =getSharedPreferences("userpref",MODE_PRIVATE);
+        SharedPreferences.Editor prefsEditor = prefs.edit();
+        Gson gson = new Gson();
+        String json = gson.toJson(user);
+        prefsEditor.putString("user", json);
+        prefsEditor.commit();
+    }
 
 }
