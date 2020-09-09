@@ -32,12 +32,7 @@
                 android:textSize="18dp"
                 android:layout_marginRight="50dp"
                 android:textStyle="normal">
-
             </TextView>
-
-
-
-
 
 
         </LinearLayout>
@@ -47,21 +42,24 @@
             android:layout_height="match_parent"
             android:layout_margin="10dp"
             android:orientation="vertical">
-         <EditText
-             android:layout_width="match_parent"
-             android:layout_height="50dp"
-             android:hint="Your Name"
-             android:paddingLeft="15dp"
-             android:layout_marginBottom="10dp"
-             android:background="@drawable/edittextback"
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:id="@+id/name_input"
+                android:hint="Your Name"
+                android:paddingLeft="15dp"
+                android:layout_marginBottom="10dp"
+                android:background="@drawable/edittextback"
 
-             ></EditText>
+                ></EditText>
 
             <EditText
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
                 android:hint="Email Address"
                 android:paddingLeft="15dp"
+                android:inputType="textEmailAddress"
+                android:id="@+id/email_input"
                 android:layout_marginBottom="10dp"
                 android:background="@drawable/edittextback"
 
@@ -70,7 +68,9 @@
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
                 android:hint="Password"
+                android:inputType="textPassword"
                 android:paddingLeft="15dp"
+                android:id="@+id/pass_input"
                 android:layout_marginBottom="10dp"
                 android:background="@drawable/edittextback"
 
