@@ -10,6 +10,13 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+import retrofit2.Retrofit;
+import retrofit2.converter.gson.GsonConverterFactory;
 
 public class Signup extends AppCompatActivity {
 
@@ -50,8 +57,30 @@ public class Signup extends AppCompatActivity {
         signup.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent in = new Intent(Signup.this, HomeActivity.class);
-                startActivity(in);
+                Retrofit retrofit = new Retrofit.Builder()
+                        .baseUrl(Api.BASE_URL)
+                        .addConverterFactory(GsonConverterFactory.create())
+                        .build();
+
+                Api api = retrofit.create(Api.class);
+                Call<User> call = api.signupUser(new User(name_input.getText().toString(),email_input.getText().toString(),"123",pass_input.getText().toString()));
+
+                call.enqueue(new Callback<User>() {
+                    @Override
+                    public void onResponse(Call<User> call, Response<User> response) {
+
+                        User user = response.body();
+                        Toast.makeText(Signup.this,"Welcome "+user.getUser_name(),Toast.LENGTH_LONG).show();
+                        Intent in = new Intent(Signup.this, HomeActivity.class);
+                        startActivity(in);
+
+                    }
+
+                    @Override
+                    public void onFailure(Call<User> call, Throwable t) {
+
+                    }
+                });
             }
         });
 
