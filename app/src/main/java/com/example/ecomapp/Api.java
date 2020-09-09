@@ -20,5 +20,10 @@ public interface Api {
     @POST("signup")
     Call<User> signupUser(@Body User user);
 
+    @POST("login")
+    Call<User> signinUser(@Body LoginUser user);
+
+
+
 
 }
