@@ -20,6 +20,7 @@
                 android:layout_width="50dp"
                 android:layout_height="20dp"
                 android:id="@+id/backbtn"
+
                 android:src="@drawable/baseline_arrow_back_black_18dp"
                 android:tint="#fff">
             </ImageView>
@@ -30,6 +31,7 @@
             android:layout_gravity="center"
             android:layout_margin="30dp"
             android:layout_height="100dp"
+            android:src="@drawable/user"
            />
 
         <LinearLayout

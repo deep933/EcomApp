@@ -19,6 +19,7 @@
             <ImageView
                 android:layout_width="50dp"
                 android:layout_height="30dp"
+                android:id="@+id/profile"
                 android:src="@drawable/baseline_account_circle_black_18dp"
                 android:tint="#FFF">
             </ImageView>
@@ -66,7 +67,7 @@
                     android:layout_height="match_parent"
                     android:background="#FFF"
                     android:id="@+id/search_input"
-                    android:hint="Search Products"></EditText>
+                    android:hint="Search Books"></EditText>
             </LinearLayout>
         </LinearLayout>
         <LinearLayout

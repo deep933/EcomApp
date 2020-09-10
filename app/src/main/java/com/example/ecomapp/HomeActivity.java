@@ -1,6 +1,19 @@
 package com.example.ecomapp;
 
-import androidx.appcompat.app.AppCompatActivity;
+/**
+ * @author Prashant Reddy Nannuru
+ * Dipmal Lakhani
+ * Sai Harshavardhan Vummidi
+ * Gopi Chand Kandula
+ * Sai Akshay Erupaka
+ * <p>
+ * Home screen
+ */
+
+/**
+ * Home screen
+ *
+ */
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -14,6 +27,8 @@ import android.widget.GridView;
 import android.widget.ImageView;
 import android.widget.Toast;
 
+import androidx.appcompat.app.AppCompatActivity;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -25,11 +40,11 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 public class HomeActivity extends AppCompatActivity {
 
-    private List<Book> books =new ArrayList<>();
-    private ImageView cart;
+
+    private List<Book> books = new ArrayList<>();
+    private ImageView cart, profile;
     private GridView gridView;
     private EditText search_input;
-
 
 
     @Override
@@ -37,10 +52,18 @@ public class HomeActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
 
-        gridView = (GridView)findViewById(R.id.gridview);
+        gridView = (GridView) findViewById(R.id.gridview);
         search_input = findViewById(R.id.search_input);
 
+        profile = findViewById(R.id.profile);
 
+        profile.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent in = new Intent(HomeActivity.this, Profile.class);
+                startActivity(in);
+            }
+        });
 
 
         //added retrofit client
@@ -50,16 +73,6 @@ public class HomeActivity extends AppCompatActivity {
                 .build();
 
         Api api = retrofit.create(Api.class);
-
-            /*books.add(new Book("3415","https://m.media-amazon.com/images/I/51Ys5yejqML.jpg","Saint X: A Novel",13.56,"Alexis Schaitkin"));
-        books.add(new Book("3415","https://m.media-amazon.com/images/I/61mlrLANctL.jpg","Things in Jars: A Novel",12.34,"Jess Kidd"));
-        books.add(new Book("3415","https://m.media-amazon.com/images/I/51nyHHSxOLL.jpg","Such a Fun Age",14.70,"Kiley Reid"));
-        books.add(new Book("3415","https://m.media-amazon.com/images/I/51Ys5yejqML.jpg","Saint X: A Novel",13.56,"Alexis Schaitkin"));
-        books.add(new Book("3415","https://m.media-amazon.com/images/I/61mlrLANctL.jpg","Things in Jars: A Novel",12.34,"Jess Kidd"));
-        books.add(new Book("3415","https://m.media-amazon.com/images/I/51nyHHSxOLL.jpg","Such a Fun Age",14.70,"Kiley Reid"));
-        books.add(new Book("3415","https://m.media-amazon.com/images/I/51Ys5yejqML.jpg","Saint X: A Novel",13.56,"Alexis Schaitkin"));
-        books.add(new Book("3415","https://m.media-amazon.com/images/I/61mlrLANctL.jpg","Things in Jars: A Novel",12.34,"Jess Kidd"));
-        books.add(new Book("3415","https://m.media-amazon.com/images/I/51nyHHSxOLL.jpg","Such a Fun Age",14.70,"Kiley Reid"));*/
 
         Call<List<Book>> call = api.getBooks();
 
@@ -75,8 +88,8 @@ public class HomeActivity extends AppCompatActivity {
                 gridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                     @Override
                     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                        Intent in = new Intent(HomeActivity.this,ProductInfo.class);
-                        in.putExtra("book",bookList.get(position));
+                        Intent in = new Intent(HomeActivity.this, ProductInfo.class);
+                        in.putExtra("book", bookList.get(position));
                         startActivity(in);
                     }
                 });
@@ -89,7 +102,7 @@ public class HomeActivity extends AppCompatActivity {
 
                     @Override
                     public void onTextChanged(CharSequence s, int start, int before, int count) {
-booksAdapter.getFilter().filter(s);
+                        booksAdapter.getFilter().filter(s);
                     }
 
                     @Override
@@ -103,8 +116,8 @@ booksAdapter.getFilter().filter(s);
 
             @Override
             public void onFailure(Call<List<Book>> call, Throwable t) {
-                Toast.makeText(HomeActivity.this,t.getMessage(),Toast.LENGTH_LONG).show();
-                Log.e("Retofit",t.getMessage());
+                Toast.makeText(HomeActivity.this, t.getMessage(), Toast.LENGTH_LONG).show();
+                Log.e("Retofit", t.getMessage());
 
             }
         });
@@ -114,7 +127,7 @@ booksAdapter.getFilter().filter(s);
         cart.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent in = new Intent(HomeActivity.this,Cart.class);
+                Intent in = new Intent(HomeActivity.this, Cart.class);
                 startActivity(in);
             }
         });

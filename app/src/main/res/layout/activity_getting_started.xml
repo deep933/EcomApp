@@ -5,5 +5,35 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".GettingStarted">
-
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:padding="10dp"
+        android:orientation="vertical">
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="BookCart"
+            android:gravity="center"
+            android:layout_marginTop="200dp"
+            android:textSize="25dp"
+            android:layout_marginBottom="100dp"
+            android:textColor="#111"/>
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:background="@color/colorPrimary"
+            android:text="Login"
+            android:textColor="#FFF"
+            android:id="@+id/login"
+            android:layout_margin="10dp"></Button>
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:background="@color/colorPrimary"
+            android:text="Signup"
+            android:textColor="#FFF"
+            android:id="@+id/signup"
+            android:layout_margin="10dp"></Button>
+    </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

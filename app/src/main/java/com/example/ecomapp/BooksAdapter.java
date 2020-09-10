@@ -1,8 +1,6 @@
 package com.example.ecomapp;
 
-import android.content.ClipData;
 import android.content.Context;
-import android.media.Image;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,6 +14,10 @@ import com.bumptech.glide.Glide;
 
 import java.util.ArrayList;
 import java.util.List;
+
+/**
+ * books custom list adapter
+ */
 
 public class BooksAdapter extends BaseAdapter implements Filterable {
 
@@ -31,7 +33,7 @@ public class BooksAdapter extends BaseAdapter implements Filterable {
         return filteredbooks.size();
     }
 
-    public BooksAdapter(Context context,List<Book> books) {
+    public BooksAdapter(Context context, List<Book> books) {
         this.mContext = context;
         this.filteredbooks = books;
         this.originalbooks = books;
@@ -59,14 +61,13 @@ public class BooksAdapter extends BaseAdapter implements Filterable {
         }
 
 
-        ImageView product_img =  (ImageView) v.findViewById(R.id.product_img);
+        ImageView product_img = (ImageView) v.findViewById(R.id.product_img);
         TextView product_title = (TextView) v.findViewById(R.id.product_title);
         TextView product_price = (TextView) v.findViewById(R.id.product_price);
 
         Glide.with(mContext).load(filteredbooks.get(position).getBook_url()).into(product_img);
         product_title.setText(filteredbooks.get(position).getBook_title());
-        product_price.setText(String.valueOf("$"+filteredbooks.get(position).getBook_price()));
-
+        product_price.setText(String.valueOf("$" + filteredbooks.get(position).getBook_price()));
 
 
         return v;
@@ -93,7 +94,7 @@ public class BooksAdapter extends BaseAdapter implements Filterable {
             int count = list.size();
             final ArrayList<Book> nlist = new ArrayList<Book>(count);
 
-            Book filterableBook ;
+            Book filterableBook;
 
             for (int i = 0; i < count; i++) {
                 filterableBook = list.get(i);

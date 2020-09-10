@@ -4,6 +4,10 @@ import com.google.gson.annotations.SerializedName;
 
 import java.io.Serializable;
 
+/**
+ * Login user model class
+ */
+
 public class LoginUser implements Serializable {
     public String getUser_email() {
         return user_email;

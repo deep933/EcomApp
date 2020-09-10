@@ -4,6 +4,10 @@ import com.google.gson.annotations.SerializedName;
 
 import java.io.Serializable;
 
+/**
+ * book model class
+ */
+
 public class Book implements Serializable {
     public String getBook_id() {
         return book_id;

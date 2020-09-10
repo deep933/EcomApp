@@ -1,17 +1,16 @@
 package com.example.ecomapp;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.gson.Gson;
 
@@ -21,12 +20,16 @@ import retrofit2.Response;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
+/**
+ * Signup Screen
+ */
+
 public class Signup extends AppCompatActivity {
 
     private ImageView back;
     private TextView signin;
     private Button signup;
-    private EditText name_input,email_input,pass_input;
+    private EditText name_input, email_input, pass_input;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -66,7 +69,7 @@ public class Signup extends AppCompatActivity {
                         .build();
 
                 Api api = retrofit.create(Api.class);
-                Call<User> call = api.signupUser(new User(name_input.getText().toString(),email_input.getText().toString(),"123",pass_input.getText().toString()));
+                Call<User> call = api.signupUser(new User(name_input.getText().toString(), email_input.getText().toString(), "123", pass_input.getText().toString()));
 
                 call.enqueue(new Callback<User>() {
                     @Override
@@ -74,7 +77,7 @@ public class Signup extends AppCompatActivity {
 
                         User user = response.body();
                         saveUser(user);
-                        Toast.makeText(Signup.this,"Welcome "+user.getUser_name(),Toast.LENGTH_LONG).show();
+                        Toast.makeText(Signup.this, "Welcome " + user.getUser_name(), Toast.LENGTH_LONG).show();
                         Intent in = new Intent(Signup.this, HomeActivity.class);
                         startActivity(in);
 
@@ -89,12 +92,11 @@ public class Signup extends AppCompatActivity {
         });
 
 
-
     }
 
 
-    private void saveUser(User user){
-        SharedPreferences prefs =getSharedPreferences("userpref",MODE_PRIVATE);
+    private void saveUser(User user) {
+        SharedPreferences prefs = getSharedPreferences("userpref", MODE_PRIVATE);
         SharedPreferences.Editor prefsEditor = prefs.edit();
         Gson gson = new Gson();
         String json = gson.toJson(user);
@@ -102,8 +104,8 @@ public class Signup extends AppCompatActivity {
         prefsEditor.commit();
     }
 
-    private User getUser(){
-        SharedPreferences prefs =getSharedPreferences("userpref",MODE_PRIVATE);
+    private User getUser() {
+        SharedPreferences prefs = getSharedPreferences("userpref", MODE_PRIVATE);
         Gson gson = new Gson();
         String json = prefs.getString("user", "");
         User user = gson.fromJson(json, User.class);

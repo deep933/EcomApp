@@ -19,6 +19,10 @@ import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * cart custom list adapter
+ */
+
 public class CartAdapter extends BaseAdapter {
 
     List<Book> books;

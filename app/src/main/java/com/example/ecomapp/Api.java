@@ -11,8 +11,13 @@ import retrofit2.http.GET;
 import retrofit2.http.POST;
 import retrofit2.http.Query;
 
+/**
+ * Api endpoints
+ */
+
 public interface Api {
-    String BASE_URL = "";
+    String BASE_URL = "http://ecomeapp-env.eba-qkekqdft.us-east-1.elasticbeanstalk.com/";
+
 
     @GET("books")
     Call<List<Book>> getBooks();
@@ -25,8 +30,6 @@ public interface Api {
 
     @POST("login")
     Call<User> signinUser(@Body LoginUser user);
-
-
 
 
 }

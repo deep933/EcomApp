@@ -4,6 +4,10 @@ import com.google.gson.annotations.SerializedName;
 
 import java.io.Serializable;
 
+/**
+ * User model class
+ */
+
 public class User implements Serializable {
     public User(String user_name, String user_email, String user_id, String user_pass) {
         this.user_name = user_name;
